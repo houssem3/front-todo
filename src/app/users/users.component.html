@@ -1,0 +1,124 @@
+<div class="background">
+  <div class="d-flex justify-content-center container">
+    <div class="col-8">
+      <div class="card-hover-shadow-2x mb-3 card">
+        <div class="card-header-tab card-header d-flex justify-content-between">
+          <div
+            class="
+              card-header-title
+              font-size-lg
+              text-capitalize
+              font-weight-normal
+            "
+          >
+            <i class="fa fa-tasks"></i>&nbsp;Users list
+          </div>
+
+          <button class="btn btn-success" (click)="htmlInsideModal.open()">
+            ADD USER
+          </button>
+        </div>
+        <div class="scroll-area-sm">
+          <div style="position: static" class="ps ps--active-y">
+            <div class="ps-content">
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let item of users" class="list-group-item">
+                  <div class="todo-indicator bg-focus"></div>
+                  <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                      <div class="widget-content-left">
+                        <div class="widget-heading">
+                          <input
+                            class="form-control editable-input"
+                            [value]="item.name"
+                            (change)="editUser('name', item, $event)"
+                          />
+                        </div>
+                      </div>
+                      <div class="widget-content">
+                        <div class="widget-heading">
+                          <input
+                            class="form-control editable-input"
+                            [value]="item.email"
+                            (change)="editUser('email', item, $event)"
+                          />
+                        </div>
+                      </div>
+                      <div class="widget-content-right">
+                        <button
+                          (click)="deleteUser(item.id)"
+                          class="btn btn-warning border-0"
+                        >
+                          delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="d-block text-right card-footer"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal #htmlInsideModal>
+  <ng-template #modalHeader><h2>Add user</h2></ng-template>
+  <ng-template #modalBody>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+        />
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">Email is invalid</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+          <div *ngIf="f.password.errors.maxlength">
+            Username must not exceed 40 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary add-btn">
+          ADD TO LIST
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</modal>

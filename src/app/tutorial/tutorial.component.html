@@ -1,0 +1,107 @@
+<div class="background">
+  <div class="d-flex justify-content-center container">
+    <div class="col-8">
+      <div class="card-hover-shadow-2x mb-3 card">
+        <div class="card-header-tab card-header d-flex justify-content-between">
+          <div
+            class="
+              card-header-title
+              font-size-lg
+              text-capitalize
+              font-weight-normal
+            "
+          >
+            <i class="fa fa-tasks"></i>&nbsp;Tutorials list
+          </div>
+          <input
+            class="form-control search-input"
+            (change)="search($event)"
+            placeholder="type a title of tuto"
+          />
+          <button class="btn btn-success" (click)="htmlInsideModal.open()">
+            ADD TUTORIAL
+          </button>
+        </div>
+        <div class="scroll-area-sm">
+          <div style="position: static" class="ps ps--active-y">
+            <div class="ps-content">
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let item of tutos" class="list-group-item">
+                  <div class="todo-indicator bg-focus"></div>
+                  <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                      <div class="widget-content-left">
+                        <div class="widget-heading">
+                          <input
+                            class="form-control editable-input"
+                            [value]="item.title"
+                            (change)="editTuto('title', item, $event)"
+                          />
+                        </div>
+                      </div>
+                      <div class="widget-content">
+                        <div class="widget-heading">
+                          <input
+                            class="form-control editable-input"
+                            [value]="item.description"
+                            (change)="editTuto('description', item, $event)"
+                          />
+                        </div>
+                      </div>
+                      <button
+                        (click)="deleteTuto(item.id)"
+                        class="btn btn-warning border-0"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="d-block text-right card-footer"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<modal #htmlInsideModal>
+  <ng-template #modalHeader><h2>Add Tutorial</h2></ng-template>
+  <ng-template #modalBody>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input
+          type="text"
+          formControlName="title"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+        />
+        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+          <div *ngIf="f.title.errors.required">title is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input
+          type="text"
+          formControlName="description"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+        />
+        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+          <div *ngIf="f.description.errors.required">
+            description is required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary add-btn">
+          ADD TO LIST
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</modal>

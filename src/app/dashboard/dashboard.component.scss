@@ -1,0 +1,37 @@
+.dashboard {
+  &__outlet {
+    width: 100%;
+  }
+  &__side-bar {
+    h3 {
+      color: transparent;
+      font-size: 30px;
+      margin-bottom: 50px;
+    }
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 55px;
+    transition: all 0.3s ease;
+    &:hover {
+      width: 300px;
+      h3 {
+        color: rgb(24, 24, 240);
+      }
+    }
+    &-link {
+      margin-top: 20px;
+      h2 {
+        margin: 0;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+      }
+      &:hover {
+        color: green;
+        cursor: pointer;
+      }
+    }
+  }
+}

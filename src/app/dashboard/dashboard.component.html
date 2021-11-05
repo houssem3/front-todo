@@ -1,0 +1,22 @@
+<div class="dashboard">
+  <div class="d-flex">
+    <div class="dashboard__side-bar">
+      <h3>Menu</h3>
+      <div
+        [routerLink]="['/dashboard/users']"
+        class="dashboard__side-bar-link d-flex align-items-center"
+      >
+        <img src="assets/icontuto.png" />
+        <h2>users</h2>
+      </div>
+      <div
+        [routerLink]="['/dashboard/tutorials']"
+        class="dashboard__side-bar-link d-flex align-items-center"
+      >
+        <img src="assets/usersicon.png" />
+        <h2>tutorials</h2>
+      </div>
+    </div>
+    <div class="dashboard__outlet"><router-outlet></router-outlet></div>
+  </div>
+</div>
