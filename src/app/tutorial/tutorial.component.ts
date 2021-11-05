@@ -112,7 +112,7 @@ export class TutorialComponent implements OnInit {
         "http://localhost:8080/api/tutorials?title=" + title.target.value
       )
       .subscribe((res) => {
-        if (res) this.loadTutos();
+        if (res) this.tutos = res;
       });
   }
 }
