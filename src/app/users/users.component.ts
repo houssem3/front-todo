@@ -49,18 +49,9 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers() {
-    const headers = new Headers();
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Access-Control-Allow-Origin": "*",
-      }),
-    };
-    this.http
-      .get<any>("localhost:8080/api/users", httpOptions)
-      .subscribe((res) => {
-        if (res) this.users = res;
-      });
+    this.http.get<any>("localhost:8080/api/users").subscribe((res) => {
+      if (res) this.users = res;
+    });
   }
 
   get f() {
