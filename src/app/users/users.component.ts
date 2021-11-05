@@ -57,10 +57,7 @@ export class UsersComponent implements OnInit {
       }),
     };
     this.http
-      .get<any>(
-        "https://cors-anywhere.herokuapp.com/localhost:8080/api/users",
-        httpOptions
-      )
+      .get<any>("localhost:8080/api/users", httpOptions)
       .subscribe((res) => {
         if (res) this.users = res;
       });
