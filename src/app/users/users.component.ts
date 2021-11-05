@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers() {
-    this.http.get<any>("localhost:8080/api/users").subscribe((res) => {
+    this.http.get<any>("http://localhost:8080/api/users").subscribe((res) => {
       if (res) this.users = res;
     });
   }
