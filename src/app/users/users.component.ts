@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -49,9 +49,17 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers() {
+    const headers = new Headers();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": "*",
+      }),
+    };
     this.http
       .get<any>(
-        "https://cors-anywhere.herokuapp.com/http://localhost:8080/api/users"
+        "https://cors-anywhere.herokuapp.com/localhost:8080/api/users",
+        httpOptions
       )
       .subscribe((res) => {
         if (res) this.users = res;
