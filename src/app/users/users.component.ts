@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
         ],
       ],
     });
-    this.loadUsers();
+    // this.loadUsers();
   }
 
   loadUsers() {
